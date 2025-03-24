@@ -14,7 +14,7 @@ const InteractiveSandbox: React.FC<InteractiveSandboxProps> = ({
   defaultPrompt,
   improvedPrompt,
   tipNumber,
-  imageUrl
+  imageUrl = "/lovable-uploads/1557507e-0f71-4515-99a9-0553f9f23d60.png" // Using the uploaded image as default
 }) => {
   const [prompt, setPrompt] = useState(defaultPrompt);
   const [copied, setCopied] = useState(false);
@@ -54,7 +54,7 @@ const InteractiveSandbox: React.FC<InteractiveSandboxProps> = ({
           <div className="w-3 h-3 rounded-full bg-yellow-500"></div>
           <div className="w-3 h-3 rounded-full bg-green-500"></div>
         </div>
-        <div className="text-sm font-medium">v0.dev interaktív példa #{tipNumber}</div>
+        <div className="text-sm font-medium">winmix.hu interaktív példa #{tipNumber}</div>
         <div></div> {/* Empty div for flex spacing */}
       </div>
       
@@ -127,7 +127,7 @@ const InteractiveSandbox: React.FC<InteractiveSandboxProps> = ({
             <div className="w-full h-full flex items-center justify-center">
               {imageUrl ? (
                 <img 
-                  src={imageUrl || "/placeholder.svg"} 
+                  src={imageUrl} 
                   alt="Preview of the design" 
                   className="max-w-full rounded-lg border border-gray-200 dark:border-gray-800"
                 />

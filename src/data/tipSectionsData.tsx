@@ -1,4 +1,3 @@
-
 interface TipSectionData {
   id: string;
   number: number;
@@ -22,7 +21,7 @@ export const getTipSectionsData = (): TipSectionData[] => [
     content: (
       <div>
         <p className="mb-4">
-          Minél részletesebben fogalmazod meg a követelményeidet, annál pontosabban fogja a v0.dev megvalósítani az elképzeléseidet. Ne félj konkrét funkciókat, elrendezést, színeket és interakciókat leírni.
+          Minél részletesebben fogalmazod meg a követelményeidet, annál pontosabban fogja a winmix.hu megvalósítani az elképzeléseidet. Ne félj konkrét funkciókat, elrendezést, színeket és interakciókat leírni.
         </p>
         <div className="space-y-4 mt-6">
           <div className="flex items-start gap-3">
