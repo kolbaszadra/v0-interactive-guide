@@ -9,6 +9,7 @@ import PromptTemplates from '@/components/PromptTemplates';
 import SuccessStories from '@/components/SuccessStories';
 import Newsletter from '@/components/Newsletter';
 import Footer from '@/components/Footer';
+import PromptSkillLevels from '@/components/PromptSkillLevels';
 import { FileText, Image, Layers, Palette, UsersRound, GitBranch, MessageSquare, Code } from 'lucide-react';
 
 const Index = () => {
@@ -302,6 +303,9 @@ const Index = () => {
             />
           ))}
         </section>
+        
+        {/* Új szekció: Prompt Skill Levels */}
+        <PromptSkillLevels />
         
         <CommonMistakes />
         <PromptTemplates />
