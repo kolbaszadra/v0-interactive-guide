@@ -1,6 +1,6 @@
 
 import React from 'react';
-import { Mail, Discord, Twitter, Github } from 'lucide-react';
+import { Mail, MessageSquare, MessagesSquare, Github } from 'lucide-react';
 
 const Newsletter = () => {
   return (
@@ -50,7 +50,7 @@ const Newsletter = () => {
                     href="#" 
                     className="flex items-center gap-2 bg-[#5865F2] text-white px-6 py-3 rounded-lg hover:opacity-90 transition-opacity"
                   >
-                    <Discord size={20} />
+                    <MessageSquare size={20} />
                     <span>Discord</span>
                   </a>
                   
@@ -58,7 +58,7 @@ const Newsletter = () => {
                     href="#" 
                     className="flex items-center gap-2 bg-[#1DA1F2] text-white px-6 py-3 rounded-lg hover:opacity-90 transition-opacity"
                   >
-                    <Twitter size={20} />
+                    <MessagesSquare size={20} />
                     <span>Twitter</span>
                   </a>
                   
