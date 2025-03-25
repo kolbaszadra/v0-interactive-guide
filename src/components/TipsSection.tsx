@@ -10,7 +10,7 @@ const TipsSection = () => {
     <section id="tips" className="py-16 bg-white dark:bg-gray-950">
       <div className="container-custom mb-16">
         <div className="max-w-3xl mx-auto text-center">
-          <h2 className="section-heading">8 tipp a hatékonyabb winmix.hu használathoz</h2>
+          <h2 className="section-heading">8 tipp a hatékonyabb v0.dev használathoz</h2>
           <p className="section-subheading">
             Ezeket a módszereket alkalmazva jobb eredményeket érhetsz el, és nagyobb kontrollt szerezhetsz a tervezési folyamat felett.
           </p>

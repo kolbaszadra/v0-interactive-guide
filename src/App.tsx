@@ -5,7 +5,6 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Index from "./pages/Index";
-import Page2 from "./pages/Page2";
 import NotFound from "./pages/NotFound";
 
 // Set up our QueryClient for data fetching
@@ -21,18 +20,18 @@ const updateMetaTags = () => {
   // Description
   const metaDescription = document.querySelector('meta[name="description"]');
   if (metaDescription) {
-    metaDescription.setAttribute("content", "Hogyan érhetsz el jobb eredményeket nagyobb kontroll mellett a winmix.hu használatával. Interaktív útmutató dizájnereknek, fejlesztőknek és termékmenedzsereknek.");
+    metaDescription.setAttribute("content", "Hogyan érhetsz el jobb eredményeket nagyobb kontroll mellett a v0.dev használatával. Interaktív útmutató dizájnereknek, fejlesztőknek és termékmenedzsereknek.");
   }
   
   // Open Graph
   const ogTitle = document.querySelector('meta[property="og:title"]');
   if (ogTitle) {
-    ogTitle.setAttribute("content", "Winmix Gyorstalpaló 2.0: Tippek és trükkök az AI Prototípus-készítéshez");
+    ogTitle.setAttribute("content", "V0 Gyorstalpaló 2.0: Tippek és trükkök az AI Prototípus-készítéshez");
   }
   
   const ogDescription = document.querySelector('meta[property="og:description"]');
   if (ogDescription) {
-    ogDescription.setAttribute("content", "Hogyan érhetsz el jobb eredményeket nagyobb kontroll mellett a winmix.hu használatával. Interaktív útmutató dizájnereknek, fejlesztőknek és termékmenedzsereknek.");
+    ogDescription.setAttribute("content", "Hogyan érhetsz el jobb eredményeket nagyobb kontroll mellett a v0.dev használatával. Interaktív útmutató dizájnereknek, fejlesztőknek és termékmenedzsereknek.");
   }
   
   const ogType = document.querySelector('meta[property="og:type"]');
@@ -52,7 +51,6 @@ const App = () => (
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Index />} />
-          <Route path="/advanced" element={<Page2 />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>
