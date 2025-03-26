@@ -2,14 +2,8 @@
 import React, { useEffect } from 'react';
 import Header from '@/components/Header';
 import Hero from '@/components/Hero';
-import Overview from '@/components/Overview';
-import TipsSection from '@/components/TipsSection';
-import CommonMistakes from '@/components/CommonMistakes';
-import PromptTemplates from '@/components/PromptTemplates';
-import SuccessStories from '@/components/SuccessStories';
-import Newsletter from '@/components/Newsletter';
+import PageContent from '@/components/PageContent';
 import Footer from '@/components/Footer';
-import PromptSkillLevels from '@/components/PromptSkillLevels';
 
 const Index = () => {
   // Set dark mode on initial load
@@ -27,13 +21,7 @@ const Index = () => {
       
       <main className="flex-1">
         <Hero />
-        <Overview />
-        <TipsSection />
-        <PromptSkillLevels />
-        <CommonMistakes />
-        <PromptTemplates />
-        <SuccessStories />
-        <Newsletter />
+        <PageContent />
       </main>
       
       <Footer />

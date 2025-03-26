@@ -1,0 +1,392 @@
+
+<!DOCTYPE html>
+<html lang="hu" class="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>V0.dev Gyorstalpaló</title>
+  <link rel="icon" type="image/svg+xml" href="/placeholder.svg">
+  <style>
+    /* Base styles */
+    :root {
+      --background: 0 0% 100%;
+      --foreground: 240 10% 3.9%;
+      --card: 0 0% 100%;
+      --card-foreground: 240 10% 3.9%;
+      --popover: 0 0% 100%;
+      --popover-foreground: 240 10% 3.9%;
+      --primary: 240 5.9% 10%;
+      --primary-foreground: 0 0% 98%;
+      --secondary: 240 4.8% 95.9%;
+      --secondary-foreground: 240 5.9% 10%;
+      --muted: 240 4.8% 95.9%;
+      --muted-foreground: 240 3.8% 46.1%;
+      --accent: 240 4.8% 95.9%;
+      --accent-foreground: 240 5.9% 10%;
+      --destructive: 0 84.2% 60.2%;
+      --destructive-foreground: 0 0% 98%;
+      --border: 240 5.9% 90%;
+      --input: 240 5.9% 90%;
+      --ring: 240 5.9% 10%;
+    }
+
+    .dark {
+      --background: 240 10% 3.9%;
+      --foreground: 0 0% 98%;
+      --card: 240 10% 3.9%;
+      --card-foreground: 0 0% 98%;
+      --popover: 240 10% 3.9%;
+      --popover-foreground: 0 0% 98%;
+      --primary: 0 0% 98%;
+      --primary-foreground: 240 5.9% 10%;
+      --secondary: 240 3.7% 15.9%;
+      --secondary-foreground: 0 0% 98%;
+      --muted: 240 3.7% 15.9%;
+      --muted-foreground: 240 5% 64.9%;
+      --accent: 240 3.7% 15.9%;
+      --accent-foreground: 0 0% 98%;
+      --destructive: 0 62.8% 30.6%;
+      --destructive-foreground: 0 0% 98%;
+      --border: 240 3.7% 15.9%;
+      --input: 240 3.7% 15.9%;
+      --ring: 240 4.9% 83.9%;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      background-color: hsl(var(--background));
+      color: hsl(var(--foreground));
+      line-height: 1.5;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 1rem;
+    }
+
+    /* Header styles */
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      width: 100%;
+      padding: 1rem;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background-color: hsl(var(--background) / 0.8);
+      backdrop-filter: blur(10px);
+    }
+
+    nav {
+      display: flex;
+      gap: 0.5rem;
+      align-items: center;
+      justify-content: center;
+      background-color: hsl(var(--background) / 0.9);
+      backdrop-filter: blur(10px);
+      padding: 0.5rem;
+      border-radius: 0.375rem;
+      border: 1px solid hsl(var(--border));
+    }
+
+    nav a {
+      display: flex;
+      align-items: center;
+      padding: 0.5rem;
+      border-radius: 0.375rem;
+      text-decoration: none;
+      color: hsl(var(--foreground));
+      transition: background-color 0.3s;
+    }
+
+    nav a:hover {
+      background-color: hsl(var(--muted));
+    }
+
+    nav .divider {
+      height: 1.5rem;
+      width: 1px;
+      background-color: hsl(var(--border));
+    }
+
+    /* Hero styles */
+    .hero {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+      padding: 3rem 0;
+      max-width: 48rem;
+      margin: 0 auto;
+    }
+
+    .hero h1 {
+      font-size: 2.25rem;
+      font-weight: 700;
+      color: hsl(var(--foreground));
+      letter-spacing: -0.025em;
+    }
+
+    .hero p {
+      font-size: 1.5rem;
+      color: hsl(var(--muted-foreground));
+    }
+
+    .hero .code-block {
+      display: inline-flex;
+      padding: 0.25rem 0.5rem;
+      margin: 0 0.25rem;
+      background-color: hsl(var(--muted));
+      border: 1px solid hsl(var(--border));
+      border-radius: 0.375rem;
+      font-family: monospace;
+    }
+
+    .hero-button {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.5rem 1rem;
+      background-color: hsl(var(--secondary));
+      color: hsl(var(--secondary-foreground));
+      font-weight: 500;
+      border-radius: 0.375rem;
+      text-decoration: none;
+      transition: background-color 0.3s;
+    }
+
+    .hero-button:hover {
+      background-color: hsl(var(--secondary) / 0.8);
+    }
+
+    .avatar {
+      width: 2rem;
+      height: 2rem;
+      border-radius: 9999px;
+      overflow: hidden;
+      background-color: hsl(var(--background));
+      border: 1px solid hsl(var(--border));
+    }
+
+    /* Content sections */
+    .section {
+      padding: 3rem 0;
+      border-top: 1px solid hsl(var(--border));
+    }
+
+    .section-title {
+      font-size: 2rem;
+      font-weight: 600;
+      margin-bottom: 1rem;
+    }
+
+    .section-description {
+      font-size: 1.125rem;
+      color: hsl(var(--muted-foreground));
+      margin-bottom: 2rem;
+    }
+
+    .card-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .card {
+      border: 1px solid hsl(var(--border));
+      border-radius: 0.5rem;
+      overflow: hidden;
+      background-color: hsl(var(--card));
+      color: hsl(var(--card-foreground));
+    }
+
+    .card-header {
+      padding: 1.5rem;
+      border-bottom: 1px solid hsl(var(--border));
+    }
+
+    .card-title {
+      font-size: 1.25rem;
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+    }
+
+    .card-description {
+      font-size: 0.875rem;
+      color: hsl(var(--muted-foreground));
+    }
+
+    .card-content {
+      padding: 1.5rem;
+    }
+
+    /* Footer styles */
+    footer {
+      padding: 2rem 0;
+      border-top: 1px solid hsl(var(--border));
+      text-align: center;
+      color: hsl(var(--muted-foreground));
+    }
+
+    /* Responsive adjustments */
+    @media (max-width: 768px) {
+      .hero h1 {
+        font-size: 1.875rem;
+      }
+      
+      .hero p {
+        font-size: 1.25rem;
+      }
+      
+      .section-title {
+        font-size: 1.5rem;
+      }
+      
+      .card-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <nav>
+      <a href="#home">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+          <polyline points="9 22 9 12 15 12 15 22"></polyline>
+        </svg>
+        <span class="ml-2">Főoldal</span>
+      </a>
+      <div class="divider"></div>
+      <a href="#capabilities">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+          <circle cx="12" cy="7" r="4"></circle>
+        </svg>
+        <span class="ml-2">Képességek</span>
+      </a>
+      <div class="divider"></div>
+      <a href="#tips">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path>
+          <polyline points="3.29 7 12 12 20.71 7"></polyline>
+          <line x1="12" y1="22" x2="12" y2="12"></line>
+        </svg>
+        <span class="ml-2">Tippek</span>
+      </a>
+    </nav>
+  </header>
+
+  <main>
+    <section id="home" class="hero container">
+      <h1>Design engineer és fejlesztő</h1>
+      <p>
+        Az v0.dev Gyorstalpaló egy átfogó útmutató az AI-vezérelt
+        <span class="code-block">v0.dev</span>
+        fejlesztőeszköz használatához.
+      </p>
+      <a href="/brandbook" class="hero-button">
+        <div class="flex items-center gap-2">
+          <div class="avatar">
+            <img src="/placeholder.svg" alt="Avatar">
+          </div>
+          <span>Brandbook megtekintése</span>
+        </div>
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M5 12h14"></path>
+          <path d="m12 5 7 7-7 7"></path>
+        </svg>
+      </a>
+    </section>
+
+    <section id="capabilities" class="section container">
+      <h2 class="section-title">Képességek</h2>
+      <p class="section-description">
+        Fedezd fel mit tudsz alkotni a v0.dev-vel és hogyan használhatod a leghatékonyabban.
+      </p>
+      <div class="card-grid">
+        <div class="card">
+          <div class="card-header">
+            <h3 class="card-title">UI Komponensek</h3>
+            <p class="card-description">Professzionális felhasználói felület elemek</p>
+          </div>
+          <div class="card-content">
+            <p>Készíts gyönyörű, reszponzív komponenseket természetes nyelvi leírásokból, és exportáld őket React vagy HTML/CSS formátumban.</p>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-header">
+            <h3 class="card-title">Teljes oldalak</h3>
+            <p class="card-description">Komplett felhasználói felületek</p>
+          </div>
+          <div class="card-content">
+            <p>Tervezz és generálj teljes weboldalakat a semmiből, a designtól kezdve a működő kódig, mindezt percek alatt.</p>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-header">
+            <h3 class="card-title">Változtatások</h3>
+            <p class="card-description">Iteratív fejlesztés</p>
+          </div>
+          <div class="card-content">
+            <p>Kérj módosításokat, finomhangolásokat és továbbfejlesztéseket a már létrehozott komponensekhez természetes párbeszéd formájában.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="tips" class="section container">
+      <h2 class="section-title">Tippek</h2>
+      <p class="section-description">
+        Segítünk kihozni a maximumot a v0.dev eszközből.
+      </p>
+      <div class="card-grid">
+        <div class="card">
+          <div class="card-header">
+            <h3 class="card-title">Részletes leírások</h3>
+          </div>
+          <div class="card-content">
+            <p>Minél részletesebb a leírásod, annál pontosabb lesz az eredmény. Adj meg színeket, méreteket, elrendezést és stílusinformációkat.</p>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-header">
+            <h3 class="card-title">Referenciák használata</h3>
+          </div>
+          <div class="card-content">
+            <p>Hivatkozz ismert UI mintákra vagy weboldalakra a jobb eredmények érdekében, például "Készíts egy GitHub-szerű navigációs sávot".</p>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-header">
+            <h3 class="card-title">Iteratív fejlesztés</h3>
+          </div>
+          <div class="card-content">
+            <p>Kezdd egy alapvető komponenssel, majd fejleszd tovább lépésről lépésre ahelyett, hogy egyszerre próbálnál mindent megvalósítani.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="container">
+    <p>&copy; 2024 v0.dev Gyorstalpaló. Minden jog fenntartva.</p>
+  </footer>
+
+  <script>
+    // Check user's preferred color scheme
+    if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+      document.documentElement.classList.remove('light');
+      document.documentElement.classList.add('dark');
+    }
+  </script>
+</body>
+</html>
