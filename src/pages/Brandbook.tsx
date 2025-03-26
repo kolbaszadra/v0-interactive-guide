@@ -1,3 +1,4 @@
+
 import React, { useState } from 'react';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
@@ -340,7 +341,7 @@ const Brandbook = () => {
                   title="Code Font"
                   code={`<!-- HTML -->
 <p className="font-mono text-sm">
-  const Component = () =&gt; {`{ return <div>Hello</div> }`}
+  const Component = () => { return <div>Hello</div> }
 </p>
 
 /* CSS */
@@ -734,4 +735,241 @@ font-medium: font-weight: 500;`}
                 <div className="p-4 border rounded-md">
                   <div className="flex space-x-6 mb-4">
                     <div className="flex flex-col items-center">
-                      <div className="w-12 h-1
+                      <div className="w-12 h-12 bg-muted rounded-md mb-2"></div>
+                      <span className="text-xs text-muted-foreground">4 (1rem)</span>
+                    </div>
+                    <div className="flex flex-col items-center">
+                      <div className="w-12 h-12 bg-muted rounded-md mb-2"></div>
+                      <span className="text-xs text-muted-foreground">6 (1.5rem)</span>
+                    </div>
+                    <div className="flex flex-col items-center">
+                      <div className="w-12 h-12 bg-muted rounded-md mb-2"></div>
+                      <span className="text-xs text-muted-foreground">8 (2rem)</span>
+                    </div>
+                    <div className="flex flex-col items-center">
+                      <div className="w-12 h-12 bg-muted rounded-md mb-2"></div>
+                      <span className="text-xs text-muted-foreground">12 (3rem)</span>
+                    </div>
+                  </div>
+                  <div className="text-xs text-muted-foreground text-center">
+                    Alapvető térközök (margin/padding mérete)
+                  </div>
+                </div>
+                <div className="p-4 border rounded-md">
+                  <div className="space-y-4 mb-4">
+                    <div className="p-2 bg-muted rounded-md">Elem 1</div>
+                    <div className="p-2 bg-muted rounded-md">Elem 2</div>
+                    <div className="p-2 bg-muted rounded-md">Elem 3</div>
+                  </div>
+                  <div className="text-xs text-muted-foreground text-center">
+                    Függőleges térköz (space-y-4)
+                  </div>
+                </div>
+              </div>
+
+              <h3 className="text-lg font-medium mb-4">Hierarchiai struktúra</h3>
+              <div className="p-4 border rounded-md">
+                <pre className="text-xs overflow-auto p-4 bg-muted rounded-md">
+{`<header>
+  <!-- Navigáció -->
+</header>
+
+<main>
+  <section>
+    <!-- Hős szekció -->
+  </section>
+  
+  <section>
+    <!-- Tartalom szekció -->
+  </section>
+  
+  <section>
+    <!-- Tartalom szekció -->
+  </section>
+</main>
+
+<footer>
+  <!-- Lábléc -->
+</footer>`}
+                </pre>
+                <div className="text-xs text-muted-foreground mt-2 text-center">
+                  Alapvető oldal struktúra
+                </div>
+              </div>
+            </CardContent>
+          </Card>
+        </TabsContent>
+
+        {/* Dark Mode Section */}
+        <TabsContent value="darkmode">
+          <Card>
+            <CardHeader>
+              <CardTitle>Sötét mód</CardTitle>
+              <CardDescription>
+                A weboldal sötét és világos módja közötti különbségek és használat.
+              </CardDescription>
+            </CardHeader>
+            <CardContent>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
+                <div className="flex flex-col">
+                  <div className="p-6 border rounded-md bg-white mb-2">
+                    <h3 className="font-semibold text-gray-900 mb-2">Világos mód</h3>
+                    <p className="text-gray-700">Ez a weboldal megjelenése világos módban. Világos háttér, sötét szöveg.</p>
+                    <button className="mt-4 bg-blue-600 text-white px-4 py-2 rounded-md">Gomb</button>
+                  </div>
+                  <div className="text-xs text-muted-foreground text-center">
+                    Világos mód megjelenése
+                  </div>
+                </div>
+                <div className="flex flex-col">
+                  <div className="p-6 border rounded-md bg-gray-900 mb-2">
+                    <h3 className="font-semibold text-gray-100 mb-2">Sötét mód</h3>
+                    <p className="text-gray-300">Ez a weboldal megjelenése sötét módban. Sötét háttér, világos szöveg.</p>
+                    <button className="mt-4 bg-blue-500 text-white px-4 py-2 rounded-md">Gomb</button>
+                  </div>
+                  <div className="text-xs text-muted-foreground text-center">
+                    Sötét mód megjelenése
+                  </div>
+                </div>
+              </div>
+
+              <h3 className="text-lg font-medium mb-4">CSS Változók</h3>
+              <div className="p-4 border rounded-md">
+                <pre className="text-xs overflow-auto p-4 bg-muted rounded-md">
+{`:root {
+  --background: 0 0% 100%;
+  --foreground: 240 10% 3.9%;
+  --card: 0 0% 100%;
+  --card-foreground: 240 10% 3.9%;
+  --popover: 0 0% 100%;
+  --popover-foreground: 240 10% 3.9%;
+  --primary: 240 5.9% 10%;
+  --primary-foreground: 0 0% 98%;
+  --secondary: 240 4.8% 95.9%;
+  --secondary-foreground: 240 5.9% 10%;
+  --muted: 240 4.8% 95.9%;
+  --muted-foreground: 240 3.8% 46.1%;
+  --accent: 240 4.8% 95.9%;
+  --accent-foreground: 240 5.9% 10%;
+  --destructive: 0 84.2% 60.2%;
+  --destructive-foreground: 0 0% 98%;
+  --border: 240 5.9% 90%;
+  --input: 240 5.9% 90%;
+  --ring: 240 5.9% 10%;
+}
+
+.dark {
+  --background: 240 10% 3.9%;
+  --foreground: 0 0% 98%;
+  --card: 240 10% 3.9%;
+  --card-foreground: 0 0% 98%;
+  --popover: 240 10% 3.9%;
+  --popover-foreground: 0 0% 98%;
+  --primary: 0 0% 98%;
+  --primary-foreground: 240 5.9% 10%;
+  --secondary: 240 3.7% 15.9%;
+  --secondary-foreground: 0 0% 98%;
+  --muted: 240 3.7% 15.9%;
+  --muted-foreground: 240 5% 64.9%;
+  --accent: 240 3.7% 15.9%;
+  --accent-foreground: 0 0% 98%;
+  --destructive: 0 62.8% 30.6%;
+  --destructive-foreground: 0 0% 98%;
+  --border: 240 3.7% 15.9%;
+  --input: 240 3.7% 15.9%;
+  --ring: 240 4.9% 83.9%;
+}`}
+                </pre>
+                <div className="text-xs text-muted-foreground mt-2 text-center">
+                  Világos és sötét mód CSS változók
+                </div>
+              </div>
+
+              <h3 className="text-lg font-medium my-4">Sötét/világos mód váltása</h3>
+              <div className="p-4 border rounded-md flex gap-4 items-center">
+                <button className="p-2 rounded-full hover:bg-secondary transition-colors">
+                  <Sun className="w-5 h-5" />
+                </button>
+                <span className="text-sm">Világos mód</span>
+                <div className="ml-4 mr-4 h-5 w-px bg-border"></div>
+                <button className="p-2 rounded-full hover:bg-secondary transition-colors">
+                  <Moon className="w-5 h-5" />
+                </button>
+                <span className="text-sm">Sötét mód</span>
+              </div>
+
+              <h3 className="text-lg font-medium my-4">Gyakorlati tanácsok</h3>
+              <div className="space-y-4">
+                <div className="p-4 border rounded-md">
+                  <p className="text-sm text-muted-foreground">
+                    <span className="font-medium text-foreground block mb-1">1. Színkontraszt</span>
+                    Mindig ellenőrizzük, hogy a szöveg és a háttér között megfelelő kontraszt van-e mindkét módban.
+                  </p>
+                </div>
+                <div className="p-4 border rounded-md">
+                  <p className="text-sm text-muted-foreground">
+                    <span className="font-medium text-foreground block mb-1">2. Árnyékok</span>
+                    Sötét módban csökkentsük az árnyékok intenzitását vagy igazítsuk a színüket.
+                  </p>
+                </div>
+                <div className="p-4 border rounded-md">
+                  <p className="text-sm text-muted-foreground">
+                    <span className="font-medium text-foreground block mb-1">3. Preferencia alapú</span>
+                    Alapértelmezetten kövessük a felhasználó rendszerpreferenciáját a sötét/világos mód tekintetében.
+                  </p>
+                </div>
+              </div>
+            </CardContent>
+          </Card>
+        </TabsContent>
+      </Tabs>
+      
+      <Card className="mt-12">
+        <CardHeader>
+          <CardTitle>Használati irányelvek</CardTitle>
+          <CardDescription>
+            A websiteframe designrendszer legjobb gyakorlatai és használati javaslatai.
+          </CardDescription>
+        </CardHeader>
+        <CardContent className="space-y-6">
+          <div className="space-y-2">
+            <h3 className="text-lg font-medium">Következetesség</h3>
+            <p className="text-muted-foreground">
+              Mindig következetesen használjuk a designrendszer elemeit. Kerüljük az egyéni stílusok alkalmazását, hogy az oldal egységes megjelenésű maradjon.
+            </p>
+          </div>
+          
+          <div className="space-y-2">
+            <h3 className="text-lg font-medium">Hozzáférhetőség</h3>
+            <p className="text-muted-foreground">
+              Minden komponens tervezésénél ügyeljünk az akadálymentességre. Használjunk megfelelő szöveges alternatívákat, elegendő kontrasztot és gondoskodjunk a billentyűzetes navigálhatóságról.
+            </p>
+          </div>
+          
+          <div className="space-y-2">
+            <h3 className="text-lg font-medium">Reszponzivitás</h3>
+            <p className="text-muted-foreground">
+              Minden elemet úgy tervezzünk, hogy különböző képernyőméreteken is megfelelően jelenjen meg. Használjuk a Tailwind CSS reszponzív osztályait.
+            </p>
+          </div>
+          
+          <div className="space-y-2">
+            <h3 className="text-lg font-medium">Teljesítmény</h3>
+            <p className="text-muted-foreground">
+              Optimalizáljuk a komponenseket a gyors betöltés érdekében. Kerüljük a túlzott animációkat és a nagy méretű képeket.
+            </p>
+          </div>
+          
+          <div className="space-y-2">
+            <h3 className="text-lg font-medium">Bővíthetőség</h3>
+            <p className="text-muted-foreground">
+              A designrendszert úgy tervezzük, hogy könnyen bővíthető legyen új komponensekkel vagy stílusvariációkkal a jövőbeni fejlesztések során.
+            </p>
+          </div>
+        </CardContent>
+      </Card>
+    </div>
+  );
+};
+
+export default Brandbook;
