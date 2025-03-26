@@ -1,13 +1,18 @@
 
 import React, { useState, useEffect } from 'react';
-import { Sun, Moon, Search, Menu, X } from 'lucide-react';
+import { Sun, Moon, Search, Menu, X, Bookmark, Bell, User } from 'lucide-react';
 import { cn } from '@/lib/utils';
+import { Button } from '@/components/ui/button';
+import { Input } from '@/components/ui/input';
+import { useToast } from '@/components/ui/use-toast';
 
 const Header = () => {
+  const { toast } = useToast();
   const [isScrolled, setIsScrolled] = useState(false);
   const [isDarkMode, setIsDarkMode] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isSearchOpen, setIsSearchOpen] = useState(false);
+  const [searchQuery, setSearchQuery] = useState('');
 
   useEffect(() => {
     const handleScroll = () => {
@@ -36,6 +41,18 @@ const Header = () => {
     document.documentElement.classList.toggle('dark', newDarkMode);
   };
 
+  const handleSearch = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (searchQuery.trim()) {
+      toast({
+        title: "Keresés",
+        description: `Keresés a következőre: "${searchQuery}"`,
+      });
+      setSearchQuery('');
+      setIsSearchOpen(false);
+    }
+  };
+
   const navItems = [
     { name: 'Képességek', href: '#capabilities' },
     { name: 'Tippek', href: '#tips' },
@@ -55,12 +72,26 @@ const Header = () => {
         {/* Logo */}
         <a href="#" className="flex items-center font-display font-bold text-xl">
           <span className="text-gradient">v0.dev</span>
+          <span className="ml-2 text-sm bg-gray-100 dark:bg-gray-800 px-2 py-0.5 rounded-full">
+            Tippek
+          </span>
         </a>
 
         {/* Desktop Navigation */}
         <nav className="hidden md:flex items-center space-x-8">
           {navItems.map((item) => (
-            <a key={item.name} href={item.href} className="nav-link">
+            <a 
+              key={item.name} 
+              href={item.href} 
+              className="nav-link"
+              onClick={(e) => {
+                e.preventDefault();
+                const element = document.querySelector(item.href);
+                if (element) {
+                  element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+              }}
+            >
               {item.name}
             </a>
           ))}
@@ -84,6 +115,32 @@ const Header = () => {
             {isDarkMode ? <Sun size={20} /> : <Moon size={20} />}
           </button>
           
+          <button 
+            className="p-2 rounded-full hover:bg-secondary transition-colors hidden md:flex" 
+            aria-label="Értesítések"
+            onClick={() => {
+              toast({
+                title: "Értesítések",
+                description: "Nincsenek új értesítéseid.",
+              });
+            }}
+          >
+            <Bell size={20} />
+          </button>
+          
+          <button 
+            className="p-2 rounded-full hover:bg-secondary transition-colors hidden md:flex" 
+            aria-label="Profil"
+            onClick={() => {
+              toast({
+                title: "Profil",
+                description: "A profilkezelő jelenleg fejlesztés alatt áll.",
+              });
+            }}
+          >
+            <User size={20} />
+          </button>
+          
           {/* Mobile menu button */}
           <button 
             onClick={() => setIsMenuOpen(!isMenuOpen)}
@@ -99,13 +156,20 @@ const Header = () => {
       {isSearchOpen && (
         <div className="absolute top-full left-0 right-0 bg-white dark:bg-gray-900 shadow-lg p-4 border-t border-gray-200 dark:border-gray-800 animate-fade-in">
           <div className="container-custom">
-            <input 
-              type="text" 
-              placeholder="Keresés..." 
-              className="w-full p-3 bg-gray-100 dark:bg-gray-800 rounded-lg"
-              aria-label="Keresés"
-              autoFocus
-            />
+            <form onSubmit={handleSearch} className="flex">
+              <Input 
+                type="text" 
+                placeholder="Keresés a tippek között..." 
+                className="w-full p-3 bg-gray-100 dark:bg-gray-800 rounded-lg"
+                aria-label="Keresés"
+                autoFocus
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+              />
+              <Button type="submit" className="ml-2">
+                Keresés
+              </Button>
+            </form>
           </div>
         </div>
       )}
@@ -119,11 +183,47 @@ const Header = () => {
                 key={item.name} 
                 href={item.href} 
                 className="py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-lg"
-                onClick={() => setIsMenuOpen(false)}
+                onClick={(e) => {
+                  e.preventDefault();
+                  setIsMenuOpen(false);
+                  const element = document.querySelector(item.href);
+                  if (element) {
+                    setTimeout(() => {
+                      element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    }, 300);
+                  }
+                }}
               >
                 {item.name}
               </a>
             ))}
+            <div className="pt-4 border-t border-gray-200 dark:border-gray-800 flex items-center justify-between">
+              <Button 
+                variant="outline" 
+                size="sm"
+                onClick={() => {
+                  toast({
+                    title: "Profil",
+                    description: "A profilkezelő jelenleg fejlesztés alatt áll.",
+                  });
+                }}
+              >
+                <User size={16} className="mr-2" /> Profil
+              </Button>
+              
+              <Button 
+                variant="outline" 
+                size="sm"
+                onClick={() => {
+                  toast({
+                    title: "Értesítések",
+                    description: "Nincsenek új értesítéseid.",
+                  });
+                }}
+              >
+                <Bell size={16} className="mr-2" /> Értesítések
+              </Button>
+            </div>
           </nav>
         </div>
       )}

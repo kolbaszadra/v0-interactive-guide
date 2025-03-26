@@ -18,26 +18,63 @@ const updateMetaTags = () => {
   document.title = "V0 Gyorstalpaló 2.0: Tippek és trükkök az AI Prototípus-készítéshez";
   
   // Description
-  const metaDescription = document.querySelector('meta[name="description"]');
+  let metaDescription = document.querySelector('meta[name="description"]');
   if (metaDescription) {
     metaDescription.setAttribute("content", "Hogyan érhetsz el jobb eredményeket nagyobb kontroll mellett a v0.dev használatával. Interaktív útmutató dizájnereknek, fejlesztőknek és termékmenedzsereknek.");
+  } else {
+    metaDescription = document.createElement('meta');
+    metaDescription.setAttribute('name', 'description');
+    metaDescription.setAttribute('content', 'Hogyan érhetsz el jobb eredményeket nagyobb kontroll mellett a v0.dev használatával. Interaktív útmutató dizájnereknek, fejlesztőknek és termékmenedzsereknek.');
+    document.head.appendChild(metaDescription);
   }
+  
+  // Keywords
+  const metaKeywords = document.createElement('meta');
+  metaKeywords.setAttribute('name', 'keywords');
+  metaKeywords.setAttribute('content', 'v0.dev, AI, tervezés, UI, UX, design, prototípus, prompt, fejlesztés');
+  document.head.appendChild(metaKeywords);
   
   // Open Graph
-  const ogTitle = document.querySelector('meta[property="og:title"]');
+  let ogTitle = document.querySelector('meta[property="og:title"]');
   if (ogTitle) {
     ogTitle.setAttribute("content", "V0 Gyorstalpaló 2.0: Tippek és trükkök az AI Prototípus-készítéshez");
+  } else {
+    ogTitle = document.createElement('meta');
+    ogTitle.setAttribute('property', 'og:title');
+    ogTitle.setAttribute('content', 'V0 Gyorstalpaló 2.0: Tippek és trükkök az AI Prototípus-készítéshez');
+    document.head.appendChild(ogTitle);
   }
   
-  const ogDescription = document.querySelector('meta[property="og:description"]');
+  let ogDescription = document.querySelector('meta[property="og:description"]');
   if (ogDescription) {
     ogDescription.setAttribute("content", "Hogyan érhetsz el jobb eredményeket nagyobb kontroll mellett a v0.dev használatával. Interaktív útmutató dizájnereknek, fejlesztőknek és termékmenedzsereknek.");
+  } else {
+    ogDescription = document.createElement('meta');
+    ogDescription.setAttribute('property', 'og:description');
+    ogDescription.setAttribute('content', 'Hogyan érhetsz el jobb eredményeket nagyobb kontroll mellett a v0.dev használatával. Interaktív útmutató dizájnereknek, fejlesztőknek és termékmenedzsereknek.');
+    document.head.appendChild(ogDescription);
   }
   
-  const ogType = document.querySelector('meta[property="og:type"]');
+  let ogType = document.querySelector('meta[property="og:type"]');
   if (ogType) {
     ogType.setAttribute("content", "website");
+  } else {
+    ogType = document.createElement('meta');
+    ogType.setAttribute('property', 'og:type');
+    ogType.setAttribute('content', 'website');
+    document.head.appendChild(ogType);
   }
+  
+  // Twitter Card
+  const twitterCard = document.createElement('meta');
+  twitterCard.setAttribute('name', 'twitter:card');
+  twitterCard.setAttribute('content', 'summary_large_image');
+  document.head.appendChild(twitterCard);
+  
+  const twitterTitle = document.createElement('meta');
+  twitterTitle.setAttribute('name', 'twitter:title');
+  twitterTitle.setAttribute('content', 'V0 Gyorstalpaló 2.0: Tippek és trükkök az AI Prototípus-készítéshez');
+  document.head.appendChild(twitterTitle);
 };
 
 // Call it once on load
