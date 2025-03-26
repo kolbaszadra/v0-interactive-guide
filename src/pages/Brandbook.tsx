@@ -87,17 +87,17 @@ const Brandbook = () => {
               <div className="rounded-md p-6 bg-muted">
                 <div className="mb-4">
                   <code className="text-sm">
-                    {'<div className="bg-primary text-primary-foreground">Elsődleges gomb</div>'}
+                    {`<div className="bg-primary text-primary-foreground">Elsődleges gomb</div>`}
                   </code>
                 </div>
                 <div className="mb-4">
                   <code className="text-sm">
-                    {'<div className="bg-secondary text-secondary-foreground">Másodlagos elem</div>'}
+                    {`<div className="bg-secondary text-secondary-foreground">Másodlagos elem</div>`}
                   </code>
                 </div>
                 <div>
                   <code className="text-sm">
-                    {'<div className="bg-muted text-muted-foreground">Halvány elem</div>'}
+                    {`<div className="bg-muted text-muted-foreground">Halvány elem</div>`}
                   </code>
                 </div>
               </div>
@@ -138,7 +138,7 @@ const Brandbook = () => {
                 <div className="p-4 border rounded-md">
                   <div className="text-sm text-muted-foreground mb-2">Code</div>
                   <p className="font-mono text-sm">
-                    const Component = () => { return &lt;div&gt;Hello&lt;/div&gt; }
+                    const Component = () =&gt; {`{ return <div>Hello</div> }`}
                   </p>
                 </div>
               </div>
@@ -275,7 +275,7 @@ const Brandbook = () => {
                     <p className="text-sm text-muted-foreground">Projekt leírás helye. Itt jelennek meg a részletek a projektről.</p>
                     <div className="mt-4 flex items-center text-sm font-medium text-primary">
                       Megtekintés 
-                      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" className="ml-1 h-4 w-4">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="ml-1 h-4 w-4">
                         <path d="M5 12h14"></path>
                         <path d="m12 5 7 7-7 7"></path>
                       </svg>
