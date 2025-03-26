@@ -128,4 +128,42 @@
   .section-subheading {
     @apply text-lg text-muted-foreground mb-12 max-w-3xl;
   }
+
+  .badge {
+    @apply inline-flex items-center rounded-full border px-2.5 py-0.5 text-xs font-semibold transition-colors focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 text-foreground;
+  }
+
+  .form-input {
+    @apply flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50;
+  }
+
+  .social-icon {
+    @apply p-2 rounded-full hover:bg-secondary transition-colors;
+  }
+
+  .social-link {
+    @apply p-2 rounded-full hover:bg-secondary transition-colors;
+  }
+
+  .hover-text-primary {
+    @apply hover:text-primary transition-colors;
+  }
+
+  .hover-underline {
+    @apply relative after:absolute after:bottom-0 after:left-0 after:right-0 after:h-[1px] after:bg-current after:scale-x-0 hover:after:scale-x-100 after:transition-transform after:duration-300 after:origin-left;
+  }
+  
+  .theme-toggle {
+    @apply p-2 rounded-full hover:bg-secondary transition-colors;
+  }
+}
+
+@layer utilities {
+  .theme-toggle .sun-icon {
+    @apply hidden dark:block;
+  }
+  
+  .theme-toggle .moon-icon {
+    @apply block dark:hidden;
+  }
 }

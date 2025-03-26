@@ -1,10 +1,11 @@
 
 import React, { useState, useEffect } from 'react';
-import { Sun, Moon, Search, Menu, X, Bookmark, Bell, User } from 'lucide-react';
+import { Sun, Moon, Search, Menu, X, Github, Twitter, Linkedin } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { useToast } from '@/components/ui/use-toast';
+import { Link } from 'react-router-dom';
 
 const Header = () => {
   const { toast } = useToast();
@@ -54,41 +55,40 @@ const Header = () => {
   };
 
   const navItems = [
+    { name: 'Főoldal', href: '#' },
     { name: 'Képességek', href: '#capabilities' },
     { name: 'Tippek', href: '#tips' },
     { name: 'Példák', href: '#examples' },
-    { name: 'Gyakori hibák', href: '#mistakes' },
-    { name: 'Sikertörténetek', href: '#success-stories' }
+    { name: 'Gyakori hibák', href: '#mistakes' }
   ];
 
   return (
     <header 
       className={cn(
-        'fixed top-0 left-0 right-0 z-50 transition-all duration-300 py-4',
-        isScrolled ? 'bg-white/80 dark:bg-black/80 backdrop-blur-lg shadow-sm' : 'bg-transparent'
+        'sticky top-0 z-50 w-full transition-all duration-300 py-4 border-b',
+        isScrolled ? 'bg-background/95 backdrop-blur-lg shadow-sm' : 'bg-transparent'
       )}
     >
-      <div className="container-custom flex items-center justify-between">
+      <div className="container flex items-center justify-between h-16">
         {/* Logo */}
-        <a href="#" className="flex items-center font-display font-bold text-xl">
-          <span className="text-gradient">v0.dev</span>
-          <span className="ml-2 text-sm bg-gray-100 dark:bg-gray-800 px-2 py-0.5 rounded-full">
-            Tippek
-          </span>
-        </a>
+        <Link to="/" className="flex items-center gap-2 font-semibold">
+          <span className="text-primary">v0.dev</span> Gyorstalpaló
+        </Link>
 
         {/* Desktop Navigation */}
-        <nav className="hidden md:flex items-center space-x-8">
+        <nav className="hidden md:flex gap-6">
           {navItems.map((item) => (
             <a 
               key={item.name} 
               href={item.href} 
-              className="nav-link"
+              className="text-sm font-medium hover:text-primary transition-colors"
               onClick={(e) => {
-                e.preventDefault();
-                const element = document.querySelector(item.href);
-                if (element) {
-                  element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                if (item.href.startsWith('#')) {
+                  e.preventDefault();
+                  const element = document.querySelector(item.href);
+                  if (element) {
+                    element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                  }
                 }
               }}
             >
@@ -115,31 +115,35 @@ const Header = () => {
             {isDarkMode ? <Sun size={20} /> : <Moon size={20} />}
           </button>
           
-          <button 
-            className="p-2 rounded-full hover:bg-secondary transition-colors hidden md:flex" 
-            aria-label="Értesítések"
-            onClick={() => {
-              toast({
-                title: "Értesítések",
-                description: "Nincsenek új értesítéseid.",
-              });
-            }}
-          >
-            <Bell size={20} />
-          </button>
-          
-          <button 
-            className="p-2 rounded-full hover:bg-secondary transition-colors hidden md:flex" 
-            aria-label="Profil"
-            onClick={() => {
-              toast({
-                title: "Profil",
-                description: "A profilkezelő jelenleg fejlesztés alatt áll.",
-              });
-            }}
-          >
-            <User size={20} />
-          </button>
+          <div className="hidden md:flex items-center space-x-2">
+            <a 
+              href="https://github.com" 
+              target="_blank" 
+              rel="noreferrer"
+              className="p-2 rounded-full hover:bg-secondary transition-colors"
+              aria-label="GitHub"
+            >
+              <Github size={20} />
+            </a>
+            <a 
+              href="https://twitter.com" 
+              target="_blank" 
+              rel="noreferrer"
+              className="p-2 rounded-full hover:bg-secondary transition-colors"
+              aria-label="Twitter"
+            >
+              <Twitter size={20} />
+            </a>
+            <a 
+              href="https://linkedin.com" 
+              target="_blank" 
+              rel="noreferrer"
+              className="p-2 rounded-full hover:bg-secondary transition-colors"
+              aria-label="LinkedIn"
+            >
+              <Linkedin size={20} />
+            </a>
+          </div>
           
           {/* Mobile menu button */}
           <button 
@@ -154,13 +158,13 @@ const Header = () => {
 
       {/* Search Overlay */}
       {isSearchOpen && (
-        <div className="absolute top-full left-0 right-0 bg-white dark:bg-gray-900 shadow-lg p-4 border-t border-gray-200 dark:border-gray-800 animate-fade-in">
-          <div className="container-custom">
+        <div className="absolute top-full left-0 right-0 bg-background border-t shadow-lg p-4 animate-fade-in">
+          <div className="container">
             <form onSubmit={handleSearch} className="flex">
               <Input 
                 type="text" 
                 placeholder="Keresés a tippek között..." 
-                className="w-full p-3 bg-gray-100 dark:bg-gray-800 rounded-lg"
+                className="w-full p-3 rounded-lg"
                 aria-label="Keresés"
                 autoFocus
                 value={searchQuery}
@@ -176,53 +180,41 @@ const Header = () => {
 
       {/* Mobile Navigation Menu */}
       {isMenuOpen && (
-        <div className="absolute top-full left-0 right-0 bg-white dark:bg-gray-900 shadow-lg border-t border-gray-200 dark:border-gray-800 md:hidden animate-fade-in">
-          <nav className="container-custom py-6 flex flex-col space-y-4">
+        <div className="absolute top-full left-0 right-0 bg-background shadow-lg border-t md:hidden animate-fade-in">
+          <nav className="container py-6 flex flex-col space-y-4">
             {navItems.map((item) => (
               <a 
                 key={item.name} 
                 href={item.href} 
-                className="py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-lg"
+                className="py-2 px-4 hover:bg-secondary rounded-lg"
                 onClick={(e) => {
-                  e.preventDefault();
-                  setIsMenuOpen(false);
-                  const element = document.querySelector(item.href);
-                  if (element) {
-                    setTimeout(() => {
-                      element.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                    }, 300);
+                  if (item.href.startsWith('#')) {
+                    e.preventDefault();
+                    setIsMenuOpen(false);
+                    const element = document.querySelector(item.href);
+                    if (element) {
+                      setTimeout(() => {
+                        element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                      }, 300);
+                    }
                   }
                 }}
               >
                 {item.name}
               </a>
             ))}
-            <div className="pt-4 border-t border-gray-200 dark:border-gray-800 flex items-center justify-between">
-              <Button 
-                variant="outline" 
-                size="sm"
-                onClick={() => {
-                  toast({
-                    title: "Profil",
-                    description: "A profilkezelő jelenleg fejlesztés alatt áll.",
-                  });
-                }}
-              >
-                <User size={16} className="mr-2" /> Profil
-              </Button>
-              
-              <Button 
-                variant="outline" 
-                size="sm"
-                onClick={() => {
-                  toast({
-                    title: "Értesítések",
-                    description: "Nincsenek új értesítéseid.",
-                  });
-                }}
-              >
-                <Bell size={16} className="mr-2" /> Értesítések
-              </Button>
+            <div className="pt-4 border-t flex items-center justify-between">
+              <div className="flex items-center space-x-4">
+                <a href="https://github.com" target="_blank" rel="noreferrer" className="p-2 hover:bg-secondary rounded-full">
+                  <Github size={20} />
+                </a>
+                <a href="https://twitter.com" target="_blank" rel="noreferrer" className="p-2 hover:bg-secondary rounded-full">
+                  <Twitter size={20} />
+                </a>
+                <a href="https://linkedin.com" target="_blank" rel="noreferrer" className="p-2 hover:bg-secondary rounded-full">
+                  <Linkedin size={20} />
+                </a>
+              </div>
             </div>
           </nav>
         </div>
