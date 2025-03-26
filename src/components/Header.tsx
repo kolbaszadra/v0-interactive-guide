@@ -1,57 +1,36 @@
 
 import React, { useState, useEffect } from 'react';
-import { Sun, Moon, Search, Menu, X, Github, Twitter, Linkedin } from 'lucide-react';
-import { cn } from '@/lib/utils';
-import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';
-import { useToast } from '@/components/ui/use-toast';
+import { Sun, Moon, Menu, X, Github, Twitter, Linkedin } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
 const Header = () => {
-  const { toast } = useToast();
-  const [isScrolled, setIsScrolled] = useState(false);
-  const [isDarkMode, setIsDarkMode] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [isSearchOpen, setIsSearchOpen] = useState(false);
-  const [searchQuery, setSearchQuery] = useState('');
+  const [isDarkMode, setIsDarkMode] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
 
+  // Kezdeti sötét/világos mód beállítása
   useEffect(() => {
+    if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+      setIsDarkMode(true);
+    }
+    
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 10);
     };
-
-    const handleDarkModeChange = (e: MediaQueryListEvent) => {
-      setIsDarkMode(e.matches);
-    };
-
-    const darkModeQuery = window.matchMedia('(prefers-color-scheme: dark)');
-    setIsDarkMode(darkModeQuery.matches);
     
-    darkModeQuery.addEventListener('change', handleDarkModeChange);
     window.addEventListener('scroll', handleScroll);
-    
     return () => {
-      darkModeQuery.removeEventListener('change', handleDarkModeChange);
       window.removeEventListener('scroll', handleScroll);
     };
   }, []);
 
-  const toggleDarkMode = () => {
-    const newDarkMode = !isDarkMode;
-    setIsDarkMode(newDarkMode);
-    document.documentElement.classList.toggle('dark', newDarkMode);
-  };
+  // Sötét/világos mód változtatása
+  useEffect(() => {
+    document.documentElement.classList.toggle('dark', isDarkMode);
+  }, [isDarkMode]);
 
-  const handleSearch = (e: React.FormEvent) => {
-    e.preventDefault();
-    if (searchQuery.trim()) {
-      toast({
-        title: "Keresés",
-        description: `Keresés a következőre: "${searchQuery}"`,
-      });
-      setSearchQuery('');
-      setIsSearchOpen(false);
-    }
+  const toggleDarkMode = () => {
+    setIsDarkMode(!isDarkMode);
   };
 
   const navItems = [
@@ -59,15 +38,15 @@ const Header = () => {
     { name: 'Képességek', href: '#capabilities' },
     { name: 'Tippek', href: '#tips' },
     { name: 'Példák', href: '#examples' },
-    { name: 'Gyakori hibák', href: '#mistakes' }
+    { name: 'Gyakori hibák', href: '#mistakes' },
+    { name: 'Sikertörténetek', href: '#success-stories' }
   ];
 
   return (
     <header 
-      className={cn(
-        'sticky top-0 z-50 w-full transition-all duration-300 py-4 border-b',
-        isScrolled ? 'bg-background/95 backdrop-blur-lg shadow-sm' : 'bg-transparent'
-      )}
+      className={`sticky top-0 z-50 w-full border-b transition-all duration-300 py-4 ${
+        isScrolled ? 'bg-background/95 backdrop-blur-lg shadow-sm' : 'bg-white/80 dark:bg-gray-900/80 backdrop-blur-lg'
+      }`}
     >
       <div className="container flex items-center justify-between h-16">
         {/* Logo */}
@@ -99,14 +78,6 @@ const Header = () => {
 
         {/* Actions */}
         <div className="flex items-center space-x-4">
-          <button 
-            onClick={() => setIsSearchOpen(!isSearchOpen)}
-            className="p-2 rounded-full hover:bg-secondary transition-colors" 
-            aria-label="Keresés"
-          >
-            <Search size={20} />
-          </button>
-          
           <button 
             onClick={toggleDarkMode}
             className="p-2 rounded-full hover:bg-secondary transition-colors" 
@@ -155,28 +126,6 @@ const Header = () => {
           </button>
         </div>
       </div>
-
-      {/* Search Overlay */}
-      {isSearchOpen && (
-        <div className="absolute top-full left-0 right-0 bg-background border-t shadow-lg p-4 animate-fade-in">
-          <div className="container">
-            <form onSubmit={handleSearch} className="flex">
-              <Input 
-                type="text" 
-                placeholder="Keresés a tippek között..." 
-                className="w-full p-3 rounded-lg"
-                aria-label="Keresés"
-                autoFocus
-                value={searchQuery}
-                onChange={(e) => setSearchQuery(e.target.value)}
-              />
-              <Button type="submit" className="ml-2">
-                Keresés
-              </Button>
-            </form>
-          </div>
-        </div>
-      )}
 
       {/* Mobile Navigation Menu */}
       {isMenuOpen && (
