@@ -32,7 +32,10 @@ const ComponentsTab = ({ expandedCodeSections, toggleCodeSection }: ComponentsTa
         />
         <CardExamples />
         <BadgeExamples />
-        <FormElements />
+        <FormElements 
+          expandedCodeSections={expandedCodeSections}
+          toggleCodeSection={toggleCodeSection}
+        />
       </CardContent>
     </Card>
   );

@@ -1,7 +1,13 @@
 
 import React from 'react';
+import ComponentWithCode from '../../ComponentWithCode';
 
-const SpacingExamples = () => {
+interface SpacingExamplesProps {
+  expandedCodeSections?: Record<string, boolean>;
+  toggleCodeSection?: (id: string) => void;
+}
+
+const SpacingExamples: React.FC<SpacingExamplesProps> = ({ expandedCodeSections, toggleCodeSection }) => {
   return (
     <>
       <h3 className="text-lg font-medium mb-4">Térközök</h3>

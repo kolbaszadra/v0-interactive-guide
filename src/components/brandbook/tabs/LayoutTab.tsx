@@ -28,10 +28,7 @@ const LayoutTab = ({ expandedCodeSections, toggleCodeSection }: LayoutTabProps) 
           expandedCodeSections={expandedCodeSections}
           toggleCodeSection={toggleCodeSection}
         />
-        <SpacingExamples 
-          expandedCodeSections={expandedCodeSections}
-          toggleCodeSection={toggleCodeSection}
-        />
+        <SpacingExamples />
       </CardContent>
     </Card>
   );
