@@ -24,7 +24,7 @@ const Brandbook = () => {
         // Clean up
         setTimeout(() => {
           document.body.removeChild(a);
-          URL.revoObjectURL(url);
+          URL.revokeObjectURL(url);
         }, 100);
       })
       .catch(error => {
