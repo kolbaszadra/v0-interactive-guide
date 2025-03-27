@@ -3,8 +3,18 @@ import React, { useState } from 'react';
 import BrandbookHeader from '@/components/brandbook/BrandbookHeader';
 import BrandbookTabs from '@/components/brandbook/BrandbookTabs';
 import UsageGuidelines from '@/components/brandbook/UsageGuidelines';
+import { toast } from 'sonner';
 
 const Brandbook = () => {
+  const [expandedCodeSections, setExpandedCodeSections] = useState<Record<string, boolean>>({});
+
+  const toggleCodeSection = (id: string) => {
+    setExpandedCodeSections(prev => ({
+      ...prev,
+      [id]: !prev[id]
+    }));
+  };
+
   const downloadStaticHTML = () => {
     // Create a hidden link element
     fetch('/static-page.html')
@@ -26,16 +36,26 @@ const Brandbook = () => {
           document.body.removeChild(a);
           URL.revokeObjectURL(url);
         }, 100);
+
+        toast.success('HTML letöltése sikeres', {
+          description: 'A static-page.html fájl letöltése megtörtént.',
+        });
       })
       .catch(error => {
         console.error('Error downloading static HTML:', error);
+        toast.error('Hiba történt a letöltés során', {
+          description: 'Kérjük, próbálja újra később.',
+        });
       });
   };
 
   return (
     <div className="container py-10">
       <BrandbookHeader downloadStaticHTML={downloadStaticHTML} />
-      <BrandbookTabs />
+      <BrandbookTabs 
+        expandedCodeSections={expandedCodeSections} 
+        toggleCodeSection={toggleCodeSection} 
+      />
       <UsageGuidelines />
     </div>
   );

@@ -24,7 +24,10 @@ const ColorsTab = ({ expandedCodeSections, toggleCodeSection }: ColorsTabProps) 
           expandedCodeSections={expandedCodeSections} 
           toggleCodeSection={toggleCodeSection} 
         />
-        <NeutralColors />
+        <NeutralColors 
+          expandedCodeSections={expandedCodeSections}
+          toggleCodeSection={toggleCodeSection}
+        />
         <ColorUsage />
       </CardContent>
     </Card>

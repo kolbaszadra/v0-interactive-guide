@@ -20,9 +20,18 @@ const LayoutTab = ({ expandedCodeSections, toggleCodeSection }: LayoutTabProps) 
         </CardDescription>
       </CardHeader>
       <CardContent>
-        <ContainerExamples />
-        <GridExamples />
-        <SpacingExamples />
+        <ContainerExamples 
+          expandedCodeSections={expandedCodeSections}
+          toggleCodeSection={toggleCodeSection}
+        />
+        <GridExamples 
+          expandedCodeSections={expandedCodeSections}
+          toggleCodeSection={toggleCodeSection}
+        />
+        <SpacingExamples 
+          expandedCodeSections={expandedCodeSections}
+          toggleCodeSection={toggleCodeSection}
+        />
       </CardContent>
     </Card>
   );

@@ -8,6 +8,7 @@ interface ColorSwatchProps {
   colorClass: string;
   cssVariable: string;
   code: string;
+  hexCode: string;
   expandedCodeSections: Record<string, boolean>;
   toggleCodeSection: (id: string) => void;
 }
@@ -18,6 +19,7 @@ const ColorSwatch = ({
   colorClass, 
   cssVariable, 
   code,
+  hexCode,
   expandedCodeSections,
   toggleCodeSection
 }: ColorSwatchProps) => {
@@ -33,6 +35,7 @@ const ColorSwatch = ({
         <div className={`h-24 rounded-md ${colorClass}`}></div>
         <span className="mt-2 text-sm font-medium">{title}</span>
         <span className="text-xs text-muted-foreground">{cssVariable}</span>
+        <span className="text-xs text-muted-foreground">{hexCode}</span>
       </div>
     </ComponentWithCode>
   );
@@ -53,6 +56,7 @@ const ColorPalette = ({ expandedCodeSections, toggleCodeSection }: ColorPaletteP
           title="Primary"
           colorClass="bg-primary"
           cssVariable="hsl(var(--primary))"
+          hexCode="#171717"
           code={`<!-- HTML -->
 <div className="bg-primary text-primary-foreground p-4">
   Primary Color
@@ -70,6 +74,7 @@ const ColorPalette = ({ expandedCodeSections, toggleCodeSection }: ColorPaletteP
           title="Primary Foreground"
           colorClass="bg-primary-foreground"
           cssVariable="hsl(var(--primary-foreground))"
+          hexCode="#FAFAFA"
           code={`<!-- HTML -->
 <div className="bg-primary-foreground text-primary p-4">
   Primary Foreground Color
@@ -86,6 +91,7 @@ const ColorPalette = ({ expandedCodeSections, toggleCodeSection }: ColorPaletteP
           title="Secondary"
           colorClass="bg-secondary"
           cssVariable="hsl(var(--secondary))"
+          hexCode="#F5F5F5"
           code={`<!-- HTML -->
 <div className="bg-secondary text-secondary-foreground p-4">
   Secondary Color
@@ -103,6 +109,7 @@ const ColorPalette = ({ expandedCodeSections, toggleCodeSection }: ColorPaletteP
           title="Secondary Foreground"
           colorClass="bg-secondary-foreground"
           cssVariable="hsl(var(--secondary-foreground))"
+          hexCode="#171717"
           code={`<!-- HTML -->
 <div className="bg-secondary-foreground text-secondary p-4">
   Secondary Foreground Color

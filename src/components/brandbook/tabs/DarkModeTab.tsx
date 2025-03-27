@@ -19,7 +19,10 @@ const DarkModeTab = ({ expandedCodeSections, toggleCodeSection }: DarkModeTabPro
         </CardDescription>
       </CardHeader>
       <CardContent>
-        <DarkModeComparison />
+        <DarkModeComparison 
+          expandedCodeSections={expandedCodeSections}
+          toggleCodeSection={toggleCodeSection}
+        />
         <DarkModeImplementation />
       </CardContent>
     </Card>

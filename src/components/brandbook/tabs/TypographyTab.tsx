@@ -28,7 +28,10 @@ const TypographyTab = ({ expandedCodeSections, toggleCodeSection }: TypographyTa
           expandedCodeSections={expandedCodeSections} 
           toggleCodeSection={toggleCodeSection} 
         />
-        <TextVariations />
+        <TextVariations 
+          expandedCodeSections={expandedCodeSections}
+          toggleCodeSection={toggleCodeSection}
+        />
       </CardContent>
     </Card>
   );
